@@ -1,0 +1,27 @@
+:root:root {
+  --toastify-color-success: var(--palette-Alert-successStandardBg);
+  --toastify-color-error: var(--palette-Alert-errorStandardBg);
+  --toastify-color-warning: var(--palette-Alert-warningStandardBg);
+  --toastify-color-info: var(--palette-Alert-infoStandardBg);
+
+  .Toastify__toast {
+    width: unset;
+    max-width: 500px;
+    min-width: var(--toastify-toast-width);
+
+    &.Toastify__toast-theme--colored {
+      &.Toastify__toast--success {
+        color: var(--palette-success-main);
+      }
+      &.Toastify__toast--error {
+        color: var(--palette-error-main);
+      }
+      &.Toastify__toast--warning {
+        color: var(--palette-warning-main);
+      }
+      &.Toastify__toast--info {
+        color: var(--palette-info-main);
+      }
+    }
+  }
+}
