@@ -12,6 +12,8 @@ export const MuiButton: Components<Omit<Theme, 'components' | 'palette'> & CssVa
         boxShadow: 'none',
       },
       ...(ownerState.rounded ? { borderRadius: '50rem' } : {}),
+      '.MuiButton-startIcon': { marginRight: 0 },
+      '.MuiButton-endIcon': { marginLeft: 0 },
     }),
   },
   variants: [

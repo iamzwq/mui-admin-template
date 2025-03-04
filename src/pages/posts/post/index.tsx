@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { Box, Button, Typography } from '@mui/material';
 import { useSuspenseQuery } from '@tanstack/react-query';
-import { fetchPost } from '~/services/posts/api';
+import { fetchPost } from '../api';
 
 export default function PostPage() {
   return (

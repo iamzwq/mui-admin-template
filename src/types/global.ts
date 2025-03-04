@@ -3,4 +3,8 @@ declare global {
     value: string | number;
     label: string;
   };
+  type Pagination = {
+    page: number;
+    limit: number;
+  };
 }

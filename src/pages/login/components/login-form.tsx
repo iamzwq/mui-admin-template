@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router';
 import { Box, Button, Typography } from '@mui/material';
 import { useMutation } from '@tanstack/react-query';
 import { ControlledCheckbox, ControlledTextField } from '~/components/controlled-form';
-import { fetchLogin } from '~/services/login/api';
+import { fetchLogin } from '../api';
 
 export default function LoginForm() {
   const navigate = useNavigate();

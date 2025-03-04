@@ -1,14 +1,20 @@
 import { useMemo, useState } from 'react';
 import { Box } from '@mui/material';
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
-import { MaterialReactTable, type MRT_ColumnDef, useMaterialReactTable } from 'material-react-table';
-import { fetchUsers } from '~/services/users/api';
+import {
+  MaterialReactTable,
+  type MRT_ColumnDef,
+  type MRT_RowSelectionState,
+  useMaterialReactTable,
+} from 'material-react-table';
+import { fetchUsers } from './api';
 
 export default function UsersPage() {
   const [pagination, setPagination] = useState({
     pageIndex: 0,
     pageSize: 20,
   });
+  const [rowSelection, setRowSelection] = useState<MRT_RowSelectionState>({});
 
   const { data: users, isFetching } = useQuery({
     queryKey: ['GET_USERS', pagination],
@@ -69,12 +75,19 @@ export default function UsersPage() {
     data: users ?? [],
     columns,
     enableColumnPinning: true,
-    initialState: { showColumnFilters: true, columnPinning: { left: ['name'] } },
+    initialState: { showColumnFilters: true, columnPinning: { left: ['mrt-row-select', 'name'] } },
     enableStickyHeader: true,
     muiTableContainerProps: { sx: { maxHeight: 'calc(100vh - 160px)' } },
     enableTopToolbar: false,
     enableKeyboardShortcuts: false,
     enableColumnActions: false,
+    enableRowSelection: true,
+    getRowId: row => row.email!,
+    onRowSelectionChange: setRowSelection,
+    // renderEmptyRowsFallback: ({ table }) => {
+    //   console.log('table 👉：', table);
+    //   return <div>No data found</div>;
+    // },
     // enableColumnFilters: false,
     manualPagination: true,
     muiPaginationProps: {
@@ -93,6 +106,14 @@ export default function UsersPage() {
       pagination,
       isLoading: isFetching,
       density: 'compact',
+      rowSelection,
+    },
+    muiTablePaperProps: {
+      elevation: 0,
+      sx: {
+        borderRadius: '4px',
+        border: '1px solid var(--border-color)',
+      },
     },
   });
 
