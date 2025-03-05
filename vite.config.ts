@@ -18,7 +18,7 @@ const getGitCommitId = () => {
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd());
   return {
-    base: env.BASE_URL,
+    base: env.VITE_DEPLOY_URL,
     plugins: [
       react(),
       tailwindcss(),
