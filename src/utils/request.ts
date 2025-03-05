@@ -23,16 +23,16 @@ class Request {
 
     this.axiosInstance.interceptors.request.use(
       config => {
-        // add token to request header
-        if (config.needToken !== false) {
-          const token = localStorage.getItem('token');
-          if (token) {
-            config.headers['x-auth'] = token;
-          } else {
-            redirectLoginPage();
-            return Promise.reject(new Error('No token found'));
-          }
-        }
+        // TODO: add token to request header
+        // if (config.needToken !== false) {
+        //   const token = localStorage.getItem('token');
+        //   if (token) {
+        //     config.headers['Authorization'] = token;
+        //   } else {
+        //     redirectLoginPage();
+        //     return Promise.reject(new Error('No token found'));
+        //   }
+        // }
         return config;
       },
       error => Promise.reject(error as Error)
